@@ -1,18 +1,24 @@
 package net.motodev.core;
 
 
-import io.vertx.ext.mongo.MongoClient;
+import java.util.Date;
 
 /**
  * Created by oksuz on 19/05/2017.
  */
 public interface Message {
 
-    String subject();
-
-    void save(MongoClient client, String collection, Callback<Object> callback);
+    String requestId();
 
     String device();
 
     String deviceId();
+
+    String type();
+
+    boolean isCommand();
+
+    Date messageDate();
+
+    String[] extraParameters();
 }

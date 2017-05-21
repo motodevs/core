@@ -11,6 +11,4 @@ public interface Device {
 
     Vector<MessageHandler> handlers();
 
-    String periodicMessageSubject();
-
 }

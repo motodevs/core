@@ -5,6 +5,6 @@ package net.motodev.core;
  */
 public interface Parser {
 
-    Message message();
+    Message parse();
 
 }
