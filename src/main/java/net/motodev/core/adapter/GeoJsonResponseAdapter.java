@@ -39,10 +39,13 @@ public class GeoJsonResponseAdapter implements ResponseAdapter<JsonObject, List<
         initLineStringCollection();
         JsonArray geometries = geoJson.getJsonArray("features").getJsonObject(0).getJsonObject("geometry").getJsonArray("coordinates");
 
-        toConvert.forEach(o -> geometries.add(new JsonArray()
-                .add(o.getDouble("longitude"))
-                .add(o.getDouble("latitude")))
-        );
+        toConvert.forEach(o -> {
+            if (o.getDouble("longitude") != 0.0 && o.getDouble("latitude") != 0.0) {
+                geometries.add(new JsonArray()
+                        .add(o.getDouble("longitude"))
+                        .add(o.getDouble("latitude")));
+            }
+        });
 
         return geoJson;
     }
