@@ -1,4 +1,4 @@
-package net.motodev.core;
+package net.motodev.core.message;
 
 import java.util.regex.Pattern;
 
@@ -7,8 +7,8 @@ import java.util.regex.Pattern;
  */
 public interface MessageHandler<T> {
 
-    public Pattern pattern();
+    Pattern pattern();
 
-    public Message handle(T obj);
+    Message handle(T obj);
 
 }

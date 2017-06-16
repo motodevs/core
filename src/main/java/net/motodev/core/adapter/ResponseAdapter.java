@@ -1,4 +1,4 @@
-package net.motodev.core;
+package net.motodev.core.adapter;
 
 /**
  * Created by oksuz on 14/05/2017.

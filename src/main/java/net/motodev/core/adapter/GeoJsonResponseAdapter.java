@@ -2,7 +2,6 @@ package net.motodev.core.adapter;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import net.motodev.core.ResponseAdapter;
 
 import java.util.List;
 

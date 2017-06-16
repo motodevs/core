@@ -1,4 +1,4 @@
-package net.motodev.core;
+package net.motodev.core.message;
 
 
 import java.util.Date;
