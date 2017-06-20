@@ -3,7 +3,7 @@ package net.motodev.core;
 import io.vertx.core.Handler;
 import net.motodev.core.adapter.ResponseAdapter;
 import net.motodev.core.alarm.Alarm;
-import net.motodev.core.db.DeviceQueryExecutor;
+import net.motodev.core.db.DeviceQueryHelper;
 import net.motodev.core.message.Message;
 import net.motodev.core.message.MessageHandler;
 
@@ -20,7 +20,7 @@ public interface Device {
 
     ResponseAdapter messageResponseAdapter();
 
-    void createAlarmIfRequired(Message m, DeviceQueryExecutor executor, Handler<Alarm> handler);
+    void createAlarmIfRequired(Message m, DeviceQueryHelper deviceQueryHelper, Handler<Alarm> handler);
 
-    void updateMeta(Message m, DeviceQueryExecutor executor);
+    void updateMeta(Message m, DeviceQueryHelper deviceQueryHelper);
 }

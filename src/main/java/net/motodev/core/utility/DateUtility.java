@@ -1,5 +1,6 @@
 package net.motodev.core.utility;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -8,6 +9,14 @@ import java.util.Date;
  * Created by oksuz on 19/05/2017.
  */
 public class DateUtility {
+
+    public static Date fromISODateFormat(String date) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static String toISODateFormat(Date d) {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(d);
