@@ -1,12 +1,14 @@
 package net.motodev.core.db;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.FindOptions;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.mongo.UpdateOptions;
 import net.motodev.core.alarm.Alarm;
+import net.motodev.core.utility.DateUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,7 @@ public class DeviceQueryHelper {
 
         List<Alarm> alarms = new ArrayList<>();
         client.findWithOptions(Collection.ALARMS, query, findOptions, result -> {
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().setDateFormat(DateUtility.ISO8601_DATE_FORMAT).create();
             if (result.succeeded()) {
                 result.result().forEach(jsonObject -> {
                     // @FIXME find better way de/serialize mongo ISODates

@@ -10,16 +10,18 @@ import java.util.Date;
  */
 public class DateUtility {
 
+    public static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+
     public static Date fromISODateFormat(String date) {
         try {
-            return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(date);
+            return new SimpleDateFormat(ISO8601_DATE_FORMAT).parse(date);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
     public static String toISODateFormat(Date d) {
-        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(d);
+        return new SimpleDateFormat(ISO8601_DATE_FORMAT).format(d);
     }
 
     public static Date getBeginningOfDay(Date d) {
