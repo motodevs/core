@@ -1,6 +1,5 @@
 package net.motodev.core.alarm;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -14,31 +13,31 @@ public class Alarm {
     private String deviceId;
     private String description;
     private List<AlarmAction> actionList;
-    private Date date;
+    private long datetime;
     private HashMap<Object, Object> extraData;
 
-    public Alarm(String deviceId, String description, List<AlarmAction> actionList, Date date) {
+    public Alarm(String deviceId, String description, List<AlarmAction> actionList, long datetime) {
         Objects.requireNonNull(deviceId);
         Objects.requireNonNull(description);
         Objects.requireNonNull(actionList);
-        Objects.requireNonNull(date);
+        Objects.requireNonNull(datetime);
 
         this.deviceId = deviceId;
         this.description = description;
         this.actionList = actionList;
-        this.date = date;
+        this.datetime = datetime;
     }
 
-    public Alarm(String deviceId, String description, List<AlarmAction> actionList, Date date, HashMap<Object, Object> extraData) {
+    public Alarm(String deviceId, String description, List<AlarmAction> actionList, long datetime, HashMap<Object, Object> extraData) {
         Objects.requireNonNull(deviceId);
         Objects.requireNonNull(description);
         Objects.requireNonNull(actionList);
-        Objects.requireNonNull(date);
+        Objects.requireNonNull(datetime);
 
         this.deviceId = deviceId;
         this.description = description;
         this.actionList = actionList;
-        this.date = date;
+        this.datetime = datetime;
         this.extraData = extraData;
     }
 
@@ -54,8 +53,8 @@ public class Alarm {
         return actionList;
     }
 
-    public Date date() {
-        return date;
+    public long datetime() {
+        return datetime;
     }
 
     public HashMap<Object, Object> extraData() {
@@ -72,7 +71,7 @@ public class Alarm {
                 "deviceId='" + deviceId + '\'' +
                 ", description='" + description + '\'' +
                 ", actionList=" + actionList +
-                ", date=" + date +
+                ", datetime=" + datetime +
                 '}';
     }
 }

@@ -1,14 +1,13 @@
 package net.motodev.core.db;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.FindOptions;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.mongo.UpdateOptions;
 import net.motodev.core.alarm.Alarm;
-import net.motodev.core.utility.DateUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +30,12 @@ public class DeviceQueryHelper {
 
     public void readMeta(Handler<Object> handler) {
         Objects.requireNonNull(handler);
-        MongoClient client = persistor.newClient();
-        JsonObject query = new JsonObject().put("deviceId", deviceId);
 
-        client.find(Collection.DEVICE_META, query, r -> {
-            if (r.succeeded()) {
-                handler.handle(r.result());
+        MongoClient client = persistor.newClient();
+
+        client.find(Collection.DEVICE_META, getQuery(), result -> {
+            if (result.succeeded()) {
+                handler.handle(result.result());
             }
 
             client.close();
@@ -45,39 +44,43 @@ public class DeviceQueryHelper {
 
     public void upsertMeta(JsonObject document, JsonObject query){
         Objects.requireNonNull(document);
-        Objects.requireNonNull(query);
 
         MongoClient client = persistor.newClient();
-        query.put("deviceId", this.deviceId);
-        UpdateOptions updateOptions = new UpdateOptions(true);
-        client.replaceDocumentsWithOptions(Collection.DEVICE_META, query, document, updateOptions, r -> client.close());
+        client.replaceDocumentsWithOptions(Collection.DEVICE_META, getQuery(query), document, new UpdateOptions(true), r -> client.close());
+    }
+
+    public void readAlarms(Handler<List<Alarm>> handler, int limit, JsonObject query) {
+        Objects.requireNonNull(handler);
+
+        MongoClient client = persistor.newClient();
+        FindOptions findOptions = new FindOptions().setSort(new JsonObject().put("datetime", -1)).setLimit(limit);
+        client.findWithOptions(Collection.ALARMS, query, findOptions, alarmsResultHandler(client, handler));
     }
 
     public void readAlarms(Handler<List<Alarm>> handler, int limit) {
-        MongoClient client = persistor.newClient();
-        JsonObject query = new JsonObject().put("deviceId", this.deviceId);
+        readAlarms(handler, limit, null);
+    }
 
-        FindOptions findOptions = new FindOptions();
-        findOptions.setSort(new JsonObject().put("date", -1));
-        findOptions.setLimit(limit);
 
+    private Handler<AsyncResult<List<JsonObject>>> alarmsResultHandler(MongoClient client, Handler<List<Alarm>> handler) {
+        Gson gson = new Gson();
         List<Alarm> alarms = new ArrayList<>();
-        client.findWithOptions(Collection.ALARMS, query, findOptions, result -> {
-            Gson gson = new GsonBuilder().setDateFormat(DateUtility.ISO8601_DATE_FORMAT).create();
+        return result -> {
             if (result.succeeded()) {
-                result.result().forEach(jsonObject -> {
-                    // @FIXME find better way de/serialize mongo ISODates
-                    jsonObject.put("date", jsonObject.getJsonObject("date").getString("$date"));
-                    alarms.add(0, gson.fromJson(jsonObject.toString(), Alarm.class));
-
-                });
-
+                result.result().forEach(jsonObject -> alarms.add(0, gson.fromJson(jsonObject.toString(), Alarm.class)));
                 handler.handle(alarms);
             }
 
             client.close();
-        });
+        };
+    }
 
+    private JsonObject getQuery(JsonObject query) {
+        return query == null ? getQuery() : query.put("deviceId", this.deviceId);
+    }
+
+    private JsonObject getQuery() {
+        return new JsonObject().put("deviceId", this.deviceId);
     }
 
 

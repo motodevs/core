@@ -1,8 +1,6 @@
 package net.motodev.core.message;
 
 
-import java.util.Date;
-
 /**
  * Created by oksuz on 19/05/2017.
  */
@@ -18,7 +16,7 @@ public interface Message {
 
     boolean isCommand();
 
-    Date messageDate();
+    long datetime();
 
     String[] extraParameters();
 }

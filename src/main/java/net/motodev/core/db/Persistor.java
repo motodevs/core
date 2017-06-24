@@ -8,7 +8,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
 import net.motodev.core.alarm.Alarm;
 import net.motodev.core.message.Message;
-import net.motodev.core.utility.DateUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +36,8 @@ public class Persistor {
     public void saveMessage(Message m) {
         MongoClient mongoClient = newClient();
         JsonObject body = new JsonObject(Json.encode(m));
-        body.put("datetime", new JsonObject().put("$date", DateUtility.toISODateFormat(m.messageDate())));
-        body.put("createdAt", new JsonObject().put("$date", DateUtility.toISODateFormat(new Date())));
+        body.put("datetime", m.datetime());
+        body.put("createdAt", new Date().getTime());
         body.put("messageType", m.type());
         body.put("deviceType", m.device());
 
@@ -64,7 +63,7 @@ public class Persistor {
             deviceResponse.put("params", new JsonArray(Arrays.asList(message.extraParameters())));
         }
 
-        deviceResponse.put("responseTime", new JsonObject().put("$date", DateUtility.toISODateFormat(message.messageDate())));
+        deviceResponse.put("responseTime", message.datetime());
 
         $set.put("response", deviceResponse);
         $set.put("read", true);
@@ -78,9 +77,7 @@ public class Persistor {
 
     public void createAlarm(Alarm alarm) {
         MongoClient client = newClient();
-        JsonObject alarmAsJson = new JsonObject(new Gson().toJson(alarm));
-        alarmAsJson.put("date", new JsonObject().put("$date", DateUtility.toISODateFormat(alarm.date())));
-        client.insert(Collection.ALARMS, alarmAsJson, result -> client.close());
+        client.insert(Collection.ALARMS, new JsonObject(new Gson().toJson(alarm)), result -> client.close());
     }
 
 
