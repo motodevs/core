@@ -29,15 +29,7 @@ public class Alarm {
     }
 
     public Alarm(String deviceId, String description, List<AlarmAction> actionList, long datetime, HashMap<Object, Object> extraData) {
-        Objects.requireNonNull(deviceId);
-        Objects.requireNonNull(description);
-        Objects.requireNonNull(actionList);
-        Objects.requireNonNull(datetime);
-
-        this.deviceId = deviceId;
-        this.description = description;
-        this.actionList = actionList;
-        this.datetime = datetime;
+        this(deviceId, description, actionList, datetime);
         this.extraData = extraData;
     }
 
