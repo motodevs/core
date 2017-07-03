@@ -33,6 +33,10 @@ public class GeoJsonResponseAdapter implements ResponseAdapter<JsonObject, List<
     }*/
     private JsonObject geoJson;
 
+    private final static String FEATURE_TYPE = "Feature";
+    private final static String LINE_STRING_TYPE = "LineString";
+    private final static String FEATURE_COLLECTION_TYPE = "FeatureCollection";
+
     @Override
     public JsonObject result(List<JsonObject> toConvert) {
         initLineStringCollection();
@@ -57,16 +61,16 @@ public class GeoJsonResponseAdapter implements ResponseAdapter<JsonObject, List<
         JsonObject geometry = new JsonObject();
         JsonArray coordinates = new JsonArray();
 
-        feature.put("type", "Feature");
+        feature.put("type", FEATURE_TYPE);
         feature.put("properties", new JsonObject());
         feature.put("geometry", geometry);
 
-        geometry.put("type", "LineString");
+        geometry.put("type", LINE_STRING_TYPE);
         geometry.put("coordinates", coordinates);
 
         features.add(feature);
 
-        geoJson.put("type", "FeatureCollection");
+        geoJson.put("type", FEATURE_COLLECTION_TYPE);
         geoJson.put("features", features);
     }
 }
