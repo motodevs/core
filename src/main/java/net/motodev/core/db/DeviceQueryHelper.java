@@ -54,6 +54,11 @@ public class DeviceQueryHelper {
 
         MongoClient client = persistor.newClient();
         FindOptions findOptions = new FindOptions().setSort(new JsonObject().put("datetime", -1)).setLimit(limit);
+
+        if (query == null) {
+            query = new JsonObject();
+        }
+
         client.findWithOptions(Collection.ALARMS, query, findOptions, alarmsResultHandler(client, handler));
     }
 
