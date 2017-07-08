@@ -1,4 +1,4 @@
-package net.motodev.core;
+package com.openmts.core;
 
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;

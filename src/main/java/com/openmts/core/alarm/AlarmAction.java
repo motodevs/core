@@ -1,4 +1,4 @@
-package net.motodev.core.alarm;
+package com.openmts.core.alarm;
 
 /**
  * Created by yo on 01/06/2017.

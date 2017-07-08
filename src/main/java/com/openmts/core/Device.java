@@ -1,11 +1,11 @@
-package net.motodev.core;
+package com.openmts.core;
 
+import com.openmts.core.alarm.Alarm;
+import com.openmts.core.message.MessageHandler;
 import io.vertx.core.Handler;
-import net.motodev.core.adapter.ResponseAdapter;
-import net.motodev.core.alarm.Alarm;
-import net.motodev.core.db.DeviceQueryHelper;
-import net.motodev.core.message.Message;
-import net.motodev.core.message.MessageHandler;
+import com.openmts.core.adapter.ResponseAdapter;
+import com.openmts.core.db.DeviceQueryHelper;
+import com.openmts.core.message.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

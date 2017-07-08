@@ -1,4 +1,4 @@
-package net.motodev.core.db;
+package com.openmts.core.db;
 
 /**
  * Created by yo on 03/06/2017.

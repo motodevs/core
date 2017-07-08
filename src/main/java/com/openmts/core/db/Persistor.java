@@ -1,13 +1,13 @@
-package net.motodev.core.db;
+package com.openmts.core.db;
 
 import com.google.gson.Gson;
+import com.openmts.core.alarm.Alarm;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
-import net.motodev.core.alarm.Alarm;
-import net.motodev.core.message.Message;
+import com.openmts.core.message.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

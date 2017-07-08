@@ -1,14 +1,14 @@
-package net.motodev.core;
+package com.openmts.core;
 
 
+import com.openmts.core.db.Collection;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
-import net.motodev.core.db.Collection;
-import net.motodev.core.db.DeviceQueryHelper;
-import net.motodev.core.db.Persistor;
+import com.openmts.core.db.DeviceQueryHelper;
+import com.openmts.core.db.Persistor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

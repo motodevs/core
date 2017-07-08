@@ -1,4 +1,4 @@
-package net.motodev.core.alarm;
+package com.openmts.core.alarm;
 
 import java.util.HashMap;
 import java.util.List;

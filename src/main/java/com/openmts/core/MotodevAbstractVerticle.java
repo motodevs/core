@@ -1,7 +1,7 @@
-package net.motodev.core;
+package com.openmts.core;
 
 import io.vertx.core.AbstractVerticle;
-import net.motodev.core.message.MessageHandler;
+import com.openmts.core.message.MessageHandler;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;

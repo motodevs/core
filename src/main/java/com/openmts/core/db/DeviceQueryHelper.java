@@ -1,13 +1,13 @@
-package net.motodev.core.db;
+package com.openmts.core.db;
 
 import com.google.gson.Gson;
+import com.openmts.core.alarm.Alarm;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.FindOptions;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.mongo.UpdateOptions;
-import net.motodev.core.alarm.Alarm;
 
 import java.util.ArrayList;
 import java.util.List;

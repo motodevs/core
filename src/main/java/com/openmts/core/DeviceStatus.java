@@ -1,4 +1,4 @@
-package net.motodev.core;
+package com.openmts.core;
 
 /**
  * Created by yo on 03/06/2017.

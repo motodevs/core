@@ -1,4 +1,4 @@
-package net.motodev.core.message;
+package com.openmts.core.message;
 
 import java.util.regex.Pattern;
 

@@ -1,4 +1,4 @@
-package net.motodev.core.adapter;
+package com.openmts.core.adapter;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;

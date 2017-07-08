@@ -1,4 +1,4 @@
-package net.motodev.core.utility;
+package com.openmts.core.utility;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
