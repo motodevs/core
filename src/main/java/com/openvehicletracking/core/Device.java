@@ -1,11 +1,11 @@
-package com.openmts.core;
+package com.openvehicletracking.core;
 
-import com.openmts.core.alarm.Alarm;
-import com.openmts.core.message.MessageHandler;
+import com.openvehicletracking.core.alarm.Alarm;
+import com.openvehicletracking.core.message.MessageHandler;
+import com.openvehicletracking.core.message.Message;
 import io.vertx.core.Handler;
-import com.openmts.core.adapter.ResponseAdapter;
-import com.openmts.core.db.DeviceQueryHelper;
-import com.openmts.core.message.Message;
+import com.openvehicletracking.core.adapter.ResponseAdapter;
+import com.openvehicletracking.core.db.DeviceQueryHelper;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

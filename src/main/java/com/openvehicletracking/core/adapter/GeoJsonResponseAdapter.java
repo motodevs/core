@@ -1,4 +1,4 @@
-package com.openmts.core.adapter;
+package com.openvehicletracking.core.adapter;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;

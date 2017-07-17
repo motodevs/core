@@ -1,7 +1,7 @@
-package com.openmts.core.db;
+package com.openvehicletracking.core.db;
 
 import com.google.gson.Gson;
-import com.openmts.core.alarm.Alarm;
+import com.openvehicletracking.core.alarm.Alarm;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;

@@ -1,4 +1,4 @@
-package com.openmts.core;
+package com.openvehicletracking.core;
 
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;

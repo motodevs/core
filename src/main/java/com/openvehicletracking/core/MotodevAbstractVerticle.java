@@ -1,7 +1,7 @@
-package com.openmts.core;
+package com.openvehicletracking.core;
 
+import com.openvehicletracking.core.message.MessageHandler;
 import io.vertx.core.AbstractVerticle;
-import com.openmts.core.message.MessageHandler;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;

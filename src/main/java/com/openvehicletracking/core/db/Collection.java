@@ -1,4 +1,4 @@
-package com.openmts.core.db;
+package com.openvehicletracking.core.db;
 
 /**
  * Created by yo on 03/06/2017.

@@ -1,4 +1,4 @@
-package com.openmts.core.alarm;
+package com.openvehicletracking.core.alarm;
 
 /**
  * Created by yo on 01/06/2017.

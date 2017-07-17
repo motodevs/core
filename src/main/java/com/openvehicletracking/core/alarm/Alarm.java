@@ -1,4 +1,4 @@
-package com.openmts.core.alarm;
+package com.openvehicletracking.core.alarm;
 
 import java.util.HashMap;
 import java.util.List;

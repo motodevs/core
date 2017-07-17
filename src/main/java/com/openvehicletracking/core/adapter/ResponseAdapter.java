@@ -1,4 +1,4 @@
-package com.openmts.core.adapter;
+package com.openvehicletracking.core.adapter;
 
 /**
  * Created by oksuz on 14/05/2017.

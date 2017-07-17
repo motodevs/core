@@ -1,4 +1,4 @@
-package com.openmts.core.utility;
+package com.openvehicletracking.core.utility;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

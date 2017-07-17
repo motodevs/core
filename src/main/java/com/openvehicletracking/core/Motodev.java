@@ -1,14 +1,14 @@
-package com.openmts.core;
+package com.openvehicletracking.core;
 
 
-import com.openmts.core.db.Collection;
+import com.openvehicletracking.core.db.Collection;
+import com.openvehicletracking.core.db.Persistor;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
-import com.openmts.core.db.DeviceQueryHelper;
-import com.openmts.core.db.Persistor;
+import com.openvehicletracking.core.db.DeviceQueryHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

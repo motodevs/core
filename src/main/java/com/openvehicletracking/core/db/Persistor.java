@@ -1,13 +1,13 @@
-package com.openmts.core.db;
+package com.openvehicletracking.core.db;
 
 import com.google.gson.Gson;
-import com.openmts.core.alarm.Alarm;
+import com.openvehicletracking.core.alarm.Alarm;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
-import com.openmts.core.message.Message;
+import com.openvehicletracking.core.message.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
