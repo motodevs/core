@@ -2,13 +2,13 @@ package com.openvehicletracking.core;
 
 
 import com.openvehicletracking.core.db.Collection;
-import com.openvehicletracking.core.db.Persistor;
+import com.openvehicletracking.core.db.DBClientFactory;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.mongo.MongoClient;
-import com.openvehicletracking.core.db.DeviceQueryHelper;
+import com.openvehicletracking.core.db.DeviceDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,38 +25,39 @@ import static java.util.concurrent.TimeUnit.MINUTES;
 
 /**
  * Created by oksuz on 19/05/2017.
+ *
  */
-public class Motodev {
+public class OpenVehicleTracker {
 
     private final DeviceRegistry deviceRegistry = new DeviceRegistry();
     private final JsonObject config;
     private final long FIVE_MIN_IN_MILIS = MILLISECONDS.convert(5, MINUTES);
     private Vertx vertx;
-    private Persistor persistor;
-    private static Motodev motodevInstance;
+    private DBClientFactory dbClientFactory;
+    private static OpenVehicleTracker openVehicleTrackerInstance;
     private ScheduledExecutorService metaUpdater = Executors.newSingleThreadScheduledExecutor();
-    private static final Logger LOGGER = LoggerFactory.getLogger(Motodev.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenVehicleTracker.class);
 
-    public static Motodev create(JsonObject config) {
-        if (null == motodevInstance) {
-            motodevInstance = new Motodev(config);
+    public static OpenVehicleTracker create(JsonObject config) {
+        if (null == openVehicleTrackerInstance) {
+            openVehicleTrackerInstance = new OpenVehicleTracker(config);
         }
-        return motodevInstance;
+        return openVehicleTrackerInstance;
     }
 
-    public static Motodev getInstance() {
-        if (null == motodevInstance) {
-            throw new RuntimeException("Motodev instance does not created");
+    public static OpenVehicleTracker getInstance() {
+        if (null == openVehicleTrackerInstance) {
+            throw new RuntimeException("OpenVehicleTracker instance does not created");
         }
 
-        return motodevInstance;
+        return openVehicleTrackerInstance;
     }
 
-    private Motodev(JsonObject config) {
+    private OpenVehicleTracker(JsonObject config) {
         Objects.requireNonNull(config);
 
         this.config = config;
-        createPersistor(config);
+        dbClientFactory = new DBClientFactory(config.getJsonObject("database").getJsonObject("mongodb"), getVertx());
         startMetaUpdater();
     }
 
@@ -76,8 +77,8 @@ public class Motodev {
                             if (meta.containsKey("deviceId") && !Objects.equals(meta.getString("deviceId"), "")) {
                                 meta.put("status", DeviceStatus.CONNECTION_LOST);
                                 meta.put("updatedAt", new Date().getTime());
-                                DeviceQueryHelper deviceQueryHelper = new DeviceQueryHelper(meta.getString("deviceId"), getPersistor());
-                                deviceQueryHelper.upsertMeta(meta, new JsonObject());
+                                DeviceDAO deviceDAO = new DeviceDAO(getDbClientFactory(), meta.getString("deviceId"));
+                                deviceDAO.upsertMeta(meta, new JsonObject());
                             }
                         }
                     }
@@ -90,16 +91,12 @@ public class Motodev {
         }, 0, 5, TimeUnit.MINUTES);
     }
 
-    private void createPersistor(JsonObject config) {
-        persistor = new Persistor(config.getJsonObject("database").getJsonObject("mongodb"), getVertx());
-    }
-
-    public Persistor getPersistor() {
-        return persistor;
+    public DBClientFactory getDbClientFactory() {
+        return dbClientFactory;
     }
 
     public MongoClient newDbClient() {
-        return getPersistor().newClient();
+        return getDbClientFactory().newClient();
     }
 
     public void deployVerticle(Class<?> verticle, DeploymentOptions deploymentOptions) {

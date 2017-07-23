@@ -4,7 +4,8 @@ import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Created by yo on 03/06/2017.
+ * Created by oksuz on 03/06/2017.
+ *
  */
 public class DeviceRegistry {
 
@@ -16,7 +17,7 @@ public class DeviceRegistry {
 
     public Device findDevice(String name) {
         for (Device d : devices) {
-            if (Objects.equals(name, d.name())) {
+            if (Objects.equals(name, d.getName())) {
                 return d;
             }
         }

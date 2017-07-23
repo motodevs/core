@@ -7,15 +7,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;
 
 /**
- * Created by yo on 21/05/2017.
+ * Created by oksuz on 21/05/2017.
+ *
  */
-abstract public class MotodevAbstractVerticle extends AbstractVerticle {
+abstract public class TrackerAbstractVerticle extends AbstractVerticle {
 
 
     protected MessageHandler findHandler(String message) {
-        CopyOnWriteArrayList<Device> devices = Motodev.getInstance().getDeviceRegistry().getDevices();
+        CopyOnWriteArrayList<Device> devices = OpenVehicleTracker.getInstance().getDeviceRegistry().getDevices();
         for (Device d : devices) {
-            CopyOnWriteArrayList<MessageHandler> handlers = d.handlers();
+            CopyOnWriteArrayList<MessageHandler> handlers = d.getHandlers();
             for (MessageHandler handler : handlers) {
                 Matcher matcher = handler.pattern().matcher(message);
                 if (matcher.matches()) {

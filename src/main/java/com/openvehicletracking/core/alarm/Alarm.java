@@ -1,12 +1,14 @@
 package com.openvehicletracking.core.alarm;
 
-import java.util.HashMap;
+
+import io.vertx.core.json.JsonObject;
+
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Created by oksuz on 01/06/2017.
- *
+ * Alarm model
  */
 public class Alarm {
 
@@ -14,7 +16,7 @@ public class Alarm {
     private String description;
     private List<AlarmAction> actionList;
     private long datetime;
-    private HashMap<Object, Object> extraData;
+    private JsonObject extraData;
 
     public Alarm(String deviceId, String description, List<AlarmAction> actionList, long datetime) {
         Objects.requireNonNull(deviceId);
@@ -28,42 +30,43 @@ public class Alarm {
         this.datetime = datetime;
     }
 
-    public Alarm(String deviceId, String description, List<AlarmAction> actionList, long datetime, HashMap<Object, Object> extraData) {
+    public Alarm(String deviceId, String description, List<AlarmAction> actionList, long datetime, JsonObject extraData) {
         this(deviceId, description, actionList, datetime);
         this.extraData = extraData;
     }
 
-    public String deviceId() {
+    public String getDeviceId() {
         return deviceId;
     }
 
-    public String description() {
+    public String getDescription() {
         return description;
     }
 
-    public List<AlarmAction> actionList() {
+    public List<AlarmAction> getActions() {
         return actionList;
     }
 
-    public long datetime() {
+    public long getDatetime() {
         return datetime;
     }
 
-    public HashMap<Object, Object> extraData() {
+    public JsonObject getExtraData() {
         return extraData;
     }
 
-    public void setExtraData(HashMap<Object, Object> extraData) {
+    public void setExtraData(JsonObject extraData) {
         this.extraData = extraData;
     }
 
     @Override
     public String toString() {
         return "Alarm{" +
-                "deviceId='" + deviceId + '\'' +
-                ", description='" + description + '\'' +
-                ", actionList=" + actionList +
+                "extraData=" + extraData +
                 ", datetime=" + datetime +
+                ", actionList=" + actionList +
+                ", description='" + description + '\'' +
+                ", deviceId='" + deviceId + '\'' +
                 '}';
     }
 }

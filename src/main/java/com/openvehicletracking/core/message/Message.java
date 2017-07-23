@@ -1,22 +1,55 @@
 package com.openvehicletracking.core.message;
 
 
+import com.google.gson.JsonObject;
+
+import java.util.Optional;
+
 /**
  * Created by oksuz on 19/05/2017.
+ *
+ * A generic Tracking Device Message
  */
 public interface Message {
 
-    String requestId();
+    /**
+     * in generally server and tracking devices are talking with requestId,
+     * Server sends command with requestId and tracking device replies with same requestId
+     * @return requestId
+     */
+    Optional<String> getRequestId();
 
-    String device();
+    /**
+     * Get Device make as string
+     * @return deviceName
+     */
+    String getDevice();
 
-    String deviceId();
+    /**
+     * gets deviceId
+     * @return deviceId
+     */
+    String getDeviceId();
 
-    String type();
+    /**
+     * tracking devices has different message types
+     * @return message type
+     */
+    Optional<String> getType();
 
+    /**
+     * is command message or different message
+     * @return isCommand
+     */
     boolean isCommand();
 
-    long datetime();
+    /**
+     * @return epoch time
+     */
+    long getDatetime();
 
-    String[] extraParameters();
+    /**
+     * @return extra parameters
+     */
+    Optional<JsonObject> getExtraParameters();
 }

@@ -1,7 +1,8 @@
 package com.openvehicletracking.core;
 
 /**
- * Created by yo on 03/06/2017.
+ * Created by oksuz on 03/06/2017.
+ *
  */
 public enum DeviceStatus {
 
