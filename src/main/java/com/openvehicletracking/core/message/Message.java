@@ -1,7 +1,7 @@
 package com.openvehicletracking.core.message;
 
 
-import com.google.gson.JsonObject;
+import io.vertx.core.json.JsonArray;
 
 import java.util.Optional;
 
@@ -51,5 +51,5 @@ public interface Message {
     /**
      * @return extra parameters
      */
-    Optional<JsonObject> getExtraParameters();
+    Optional<JsonArray> getExtraParameters();
 }
