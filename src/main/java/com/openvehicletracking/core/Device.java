@@ -1,10 +1,12 @@
 package com.openvehicletracking.core;
 
 import com.openvehicletracking.core.alarm.Alarm;
+import com.openvehicletracking.core.db.CommandDAO;
 import com.openvehicletracking.core.db.DeviceDAO;
 import com.openvehicletracking.core.message.Message;
 import com.openvehicletracking.core.message.MessageHandler;
 import io.vertx.core.Handler;
+import io.vertx.core.json.JsonArray;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -45,4 +47,16 @@ public interface Device {
      * @param deviceDAO accessor for device meta and generated device alarms
      */
     void updateMeta(Message message, DeviceDAO deviceDAO);
+
+    /**
+     * this method calling when message received.
+     *
+     * if reply required for message or device have any unread commands in db,
+     * you should call handler.handle method with json Array. message will reply with same tcp connection
+     *
+     * @param message device message
+     * @param deviceDAO commands collection data access object
+     * @param handler handler
+     */
+    void replyMessage(Message message, CommandDAO commandDAO, Handler<JsonArray> handler);
 }

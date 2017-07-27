@@ -17,17 +17,16 @@ public class DeviceDAO extends AbstractDAO {
     private String deviceId;
     private AlarmDAO alarmDAO;
 
-    public DeviceDAO(DBClientFactory factory) {
-        super(factory);
-    }
-
     public DeviceDAO(DBClientFactory dbClientFactory, String deviceId) {
         super(dbClientFactory);
+        requireNonNull(deviceId, "device id cannot be empty");
         this.deviceId = deviceId;
     }
 
     public DeviceDAO(DBClientFactory dbClientFactory, String deviceId, AlarmDAO alarmDAO) {
         super(dbClientFactory);
+        requireNonNull(deviceId, "device id cannot be empty");
+        requireNonNull(deviceId, "alarmDAO cannot be null");
         this.deviceId = deviceId;
         this.alarmDAO = alarmDAO;
     }

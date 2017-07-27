@@ -18,11 +18,7 @@ public class MessagesDAO extends AbstractDAO {
 
     public void save(Message message) {
         JsonObject body = new JsonObject(new Gson().toJson(message));
-        body.put("datetime", message.getDatetime());
         body.put("createdAt", new Date().getTime());
-        body.put("messageType", message.getType());
-        body.put("deviceType", message.getDevice());
-
         save(Collection.MESSAGES, body, emptyHandler(), emptyFailedQueryHandler());
     }
 }

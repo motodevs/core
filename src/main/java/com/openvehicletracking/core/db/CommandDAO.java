@@ -2,7 +2,11 @@ package com.openvehicletracking.core.db;
 
 import com.openvehicletracking.core.exception.MandatoryFieldException;
 import com.openvehicletracking.core.message.Message;
+import io.vertx.core.Handler;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Created by oksuz on 20/07/2017.
@@ -10,8 +14,12 @@ import io.vertx.core.json.JsonObject;
  */
 public class CommandDAO extends AbstractDAO {
 
-    public CommandDAO(DBClientFactory factory) {
+    private String deviceId;
+
+    public CommandDAO(DBClientFactory factory, String deviceId) {
         super(factory);
+        requireNonNull(deviceId, "device id cannot be empty");
+        this.deviceId = deviceId;
     }
 
     public void update(Message message) throws MandatoryFieldException {
@@ -21,7 +29,7 @@ public class CommandDAO extends AbstractDAO {
             throw new MandatoryFieldException("RequestId required for update command");
         }
 
-        query.put("deviceId", message.getDevice());
+        query.put("deviceId", deviceId);
         query.put("requestId", message.getRequestId().get());
 
         JsonObject update = new JsonObject();
@@ -38,6 +46,22 @@ public class CommandDAO extends AbstractDAO {
         update.put("$set", $set);
 
         updateOne(Collection.COMMANDS, query, update, emptyHandler(), emptyFailedQueryHandler());
+    }
+
+    public void getUnread(Handler<JsonArray> handler) {
+        JsonObject query = new JsonObject().put("deviceId", deviceId).put("read", false);
+        findAll(Collection.COMMANDS, query, records -> {
+            JsonArray toHandle = new JsonArray();
+
+            records.forEach(record -> {
+                String command = record.getString("command", "");
+                if (!"".equals(command)) {
+                    toHandle.add(command);
+                }
+            });
+
+            handler.handle(toHandle);
+        }, emptyFailedQueryHandler());
     }
 
 }
