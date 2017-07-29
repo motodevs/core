@@ -8,6 +8,8 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: 'signing'
+
 
 sourceCompatibility = 1.8
 
@@ -15,6 +17,25 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
 
 dependencies {
     compile 'io.vertx:vertx-core:' + vertxVersion
@@ -26,4 +47,48 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:' + log4jVersion
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'OpenVehicleTracking Core'
+                packaging 'jar'
+                description 'This package contains core interfaces and core dependencies'
+                url 'http://openvehicletracking.com'
+
+                scm {
+                    connection 'scm:git:https://github.com/openvehicletracking/core.git'
+                    developerConnection 'scm:git:https://github.com/openvehicletracking/core.git'
+                    url 'https://github.com/openvehicletracking/core'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://github.com/openvehicletracking/core/blob/master/LICENSE'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'oksuz'
+                        name 'Yunus Oksuz'
+                        email 'yunusoksuz@gmail.com'
+                    }
+                }
+            }
+        }
+    }
 }

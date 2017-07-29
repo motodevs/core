@@ -55,7 +55,7 @@ public interface Device {
      * you should call handler.handle method with json Array. message will reply with same tcp connection
      *
      * @param message device message
-     * @param deviceDAO commands collection data access object
+     * @param commandDAO commands collection data access object
      * @param handler handler
      */
     void replyMessage(Message message, CommandDAO commandDAO, Handler<JsonArray> handler);
