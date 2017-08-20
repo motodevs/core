@@ -74,11 +74,12 @@ public class OpenVehicleTracker {
                     if (result.succeeded()) {
                         List<JsonObject> metas = result.result();
                         for (JsonObject meta : metas) {
-                            if (meta.containsKey("deviceId") && !Objects.equals(meta.getString("deviceId"), "")) {
-                                meta.put("status", DeviceStatus.CONNECTION_LOST);
-                                meta.put("updatedAt", new Date().getTime());
-                                DeviceDAO deviceDAO = new DeviceDAO(getDbClientFactory(), meta.getString("deviceId"));
-                                deviceDAO.upsertMeta(meta, new JsonObject());
+                            DeviceState state = DeviceState.fromJson(meta);
+                            if (state.getDeviceId() != null && !Objects.equals(state.getDeviceId(), "")) {
+                                state.setDeviceStatus(DeviceStatus.CONNECTION_LOST);
+                                state.setUpdatedAt(new Date().getTime());
+                                DeviceDAO deviceDAO = new DeviceDAO(getDbClientFactory(), state.getDeviceId());
+                                deviceDAO.upsertMeta(state, new JsonObject());
                             }
                         }
                     }

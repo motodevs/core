@@ -1,5 +1,6 @@
 package com.openvehicletracking.core.db;
 
+import com.openvehicletracking.core.DeviceState;
 import com.openvehicletracking.core.alarm.Alarm;
 import io.vertx.core.Handler;
 import io.vertx.core.json.JsonObject;
@@ -37,9 +38,9 @@ public class DeviceDAO extends AbstractDAO {
         findOne(Collection.DEVICE_META, getQuery(), handler, emptyFailedQueryHandler());
     }
 
-    public void upsertMeta(JsonObject document, JsonObject query){
-        requireNonNull(document, "document cannot be null");
-        replace(Collection.DEVICE_META, getQuery(query), document, emptyHandler(), emptyFailedQueryHandler());
+    public void upsertMeta(DeviceState deviceState, JsonObject query){
+        requireNonNull(deviceState, "deviceState cannot be null");
+        replace(Collection.DEVICE_META, getQuery(query), deviceState.toJson(), emptyHandler(), emptyFailedQueryHandler());
     }
 
     public void readAlarms(Handler<List<Alarm>> handler, int limit, JsonObject query) {
