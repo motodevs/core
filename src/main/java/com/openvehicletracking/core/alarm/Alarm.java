@@ -1,7 +1,7 @@
 package com.openvehicletracking.core.alarm;
 
 
-import io.vertx.core.json.JsonObject;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,5 +1,6 @@
 package com.openvehicletracking.core.message;
 
+import com.google.gson.JsonObject;
 import com.openvehicletracking.core.GpsStatus;
 
 /**
@@ -37,4 +38,19 @@ public interface LocationMessage extends Message {
      * @return gpsStatus
      */
     GpsStatus getStatus();
+
+    /**
+     * @param jsonString jsonString
+     * @param <T> message extending from LocationMessage
+     * @return message
+     */
+    <T extends LocationMessage> T fromJson(String jsonString);
+
+    /**
+     *
+     * @param json json
+     * @param <T> message extending from LocationMessage
+     * @return message
+     */
+    <T extends LocationMessage> T fromJson(JsonObject json);
 }

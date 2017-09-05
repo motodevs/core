@@ -1,7 +1,8 @@
 package com.openvehicletracking.core;
 
 import com.google.gson.Gson;
-import io.vertx.core.json.JsonObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.Serializable;
 
@@ -27,15 +28,12 @@ public class DeviceState implements Serializable {
     private static Gson gson = new Gson();
 
     public static DeviceState fromJson(JsonObject object) {
-
-        if (object.containsKey("_id")) {
-            object.remove("_id");
-        }
-        return gson.fromJson(object.toString(), DeviceState.class);
+        return gson.fromJson(object, DeviceState.class);
     }
 
     public JsonObject toJson() {
-        return new JsonObject(gson.toJson(this));
+        JsonParser parser = new JsonParser();
+        return parser.parse(gson.toJson(this)).getAsJsonObject();
     }
 
     public String getDeviceId() {
