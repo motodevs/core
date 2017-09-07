@@ -2,6 +2,7 @@ package com.openvehicletracking.core.message.impl;
 
 import com.google.gson.JsonArray;
 import com.openvehicletracking.core.message.CommandMessage;
+import com.openvehicletracking.core.message.Reply;
 
 import java.util.Optional;
 
@@ -9,7 +10,7 @@ import java.util.Optional;
  * Created by oksuz on 05/09/2017.
  *
  */
-public class CommandMessageImpl implements CommandMessage {
+public abstract class AbstractCommandMessage implements CommandMessage {
 
     private String command;
     private String requestId;
@@ -65,4 +66,45 @@ public class CommandMessageImpl implements CommandMessage {
         return isRead;
     }
 
+    @Override
+    public boolean isReplyRequired() {
+        return false;
+    }
+
+    @Override
+    public Class<? extends Reply> getReplyType() {
+        return StringReply.class;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setDevice(String device) {
+        this.device = device;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDatetime(long datetime) {
+        this.datetime = datetime;
+    }
+
+    public void setExtraParameters(JsonArray extraParameters) {
+        this.extraParameters = extraParameters;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
+    }
 }

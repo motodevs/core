@@ -52,4 +52,17 @@ public interface Message {
      */
     Optional<JsonArray> getExtraParameters();
 
+
+    /**
+     *
+     * @return when return true then call Device#replyMessage
+     */
+    boolean isReplyRequired();
+
+    /**
+     *
+     * @return Reply class
+     */
+    Class<? extends Reply> getReplyType();
+
 }

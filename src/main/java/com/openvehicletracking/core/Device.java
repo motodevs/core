@@ -62,6 +62,12 @@ public interface Device {
 
     /**
      *
+     * @return locationMessage class
+     */
+    Class<? extends LocationMessage> getLocationType();
+
+    /**
+     *
      * @param messages message
      * @return geojson message
      */
