@@ -12,6 +12,7 @@ public class DeviceRegistry {
     private final CopyOnWriteArrayList<Device> devices = new CopyOnWriteArrayList<>();
     private static final DeviceRegistry INSTANCE = new DeviceRegistry();
 
+    private DeviceRegistry() {}
 
     public static DeviceRegistry getInstance() {
         return INSTANCE;
