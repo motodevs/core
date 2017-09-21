@@ -38,14 +38,7 @@ signing {
 
 
 dependencies {
-//    compile 'io.vertx:vertx-core:' + vertxVersion
-//    compile 'io.vertx:vertx-web:' + vertxVersion
-//    compile 'io.vertx:vertx-mongo-client:' + vertxVersion
     compile 'com.google.code.gson:gson:2.7'
-    compile 'org.apache.logging.log4j:log4j-api:' + log4jVersion
-    compile 'org.apache.logging.log4j:log4j-core:' + log4jVersion
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:' + log4jVersion
-
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
