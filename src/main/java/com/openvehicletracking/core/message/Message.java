@@ -59,10 +59,4 @@ public interface Message {
      */
     boolean isReplyRequired();
 
-    /**
-     *
-     * @return Reply class
-     */
-    Class<? extends Reply> getReplyType();
-
 }

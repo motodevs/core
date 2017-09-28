@@ -2,7 +2,6 @@ package com.openvehicletracking.core.message.impl;
 
 import com.google.gson.JsonArray;
 import com.openvehicletracking.core.message.CommandMessage;
-import com.openvehicletracking.core.message.Reply;
 
 import java.util.Optional;
 
@@ -69,11 +68,6 @@ public abstract class AbstractCommandMessage implements CommandMessage {
     @Override
     public boolean isReplyRequired() {
         return false;
-    }
-
-    @Override
-    public Class<? extends Reply> getReplyType() {
-        return StringReply.class;
     }
 
     public void setCommand(String command) {

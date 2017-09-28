@@ -53,12 +53,11 @@ public interface Device {
      * you should call handler.handle method with json Array. message will reply with same tcp connection
      *
      * @param message device message
-     * @param tClass type
      * @param <T> type
      * @param unreadMessages messages of going wait to send
      * @return reply for message
      */
-    <T extends Reply> T replyMessage(Message message, List<? extends CommandMessage> unreadMessages, Class<T> tClass) throws UnsupportedReplyTypeException;
+    <T> Reply<T> replyMessage(Message message, List<? extends CommandMessage> unreadMessages) throws UnsupportedReplyTypeException;
 
     /**
      *
