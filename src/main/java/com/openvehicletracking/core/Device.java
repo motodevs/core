@@ -1,6 +1,7 @@
 package com.openvehicletracking.core;
 
 import com.openvehicletracking.core.alarm.Alarm;
+import com.openvehicletracking.core.exception.UnsupportedMessageTypeException;
 import com.openvehicletracking.core.geojson.GeoJsonResponse;
 import com.openvehicletracking.core.message.*;
 import com.openvehicletracking.core.message.exception.UnsupportedReplyTypeException;
@@ -44,7 +45,7 @@ public interface Device {
      * @param message parsed device message
      * @return device state
      */
-    DeviceState createStateFromMessage(Message message);
+    DeviceState createStateFromMessage(Message message) throws UnsupportedMessageTypeException;
 
     /**
      * this method calling when message received.

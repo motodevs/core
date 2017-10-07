@@ -11,14 +11,14 @@ import java.util.Optional;
  */
 public abstract class AbstractCommandMessage implements CommandMessage {
 
-    private String command;
-    private String requestId;
-    private String device;
-    private String deviceId;
-    private String type;
-    private long datetime;
-    private JsonArray extraParameters;
-    private boolean isRead;
+    protected String command;
+    protected String requestId;
+    protected String device;
+    protected String deviceId;
+    protected String type;
+    protected long datetime;
+    protected JsonArray extraParameters;
+    protected boolean isRead;
 
     @Override
     public String getCommand() {
