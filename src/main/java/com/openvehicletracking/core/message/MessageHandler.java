@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  *
  * Create message handlers using this interface. MessageHandlers are taken over by Device#getHandlers method
  */
-public interface MessageHandler<T> {
+public interface MessageHandler {
 
     /**
      * This method called when new incoming message.
@@ -17,9 +17,9 @@ public interface MessageHandler<T> {
     Pattern pattern();
 
     /**
-     * @param obj generic message object
+     * @param msg message
      * @return device message
      */
-    Message handle(T obj);
+    Message handle(String msg);
 
 }

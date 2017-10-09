@@ -1,14 +1,14 @@
 package com.openvehicletracking.core;
 
 import com.openvehicletracking.core.alarm.Alarm;
-import com.openvehicletracking.core.db.CommandDAO;
-import com.openvehicletracking.core.db.DeviceDAO;
-import com.openvehicletracking.core.message.Message;
-import com.openvehicletracking.core.message.MessageHandler;
-import io.vertx.core.Handler;
-import io.vertx.core.json.JsonArray;
+import com.openvehicletracking.core.exception.UnsupportedMessageTypeException;
+import com.openvehicletracking.core.geojson.GeoJsonResponse;
+import com.openvehicletracking.core.message.*;
+import com.openvehicletracking.core.message.exception.UnsupportedReplyTypeException;
 
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 
 /**
  * @author oksuz
@@ -36,17 +36,16 @@ public interface Device {
     /**
      *
      * @param message parsed device message
-     * @param deviceDAO accessor for device meta and generated device alarms
-     * @param handler alarm handler callback if alarm created then call handler like handler.handle(alarm)
+     * @return alarm
      */
-    void generateAlarmFromMessage(Message message, DeviceDAO deviceDAO, Handler<Alarm> handler);
+    Alarm generateAlarmFromMessage(Message message);
 
     /**
      * update device meta or state using message
      * @param message parsed device message
-     * @param deviceDAO accessor for device meta and generated device alarms
+     * @return device state
      */
-    void updateMeta(Message message, DeviceDAO deviceDAO);
+    DeviceState createStateFromMessage(Message message) throws UnsupportedMessageTypeException;
 
     /**
      * this method calling when message received.
@@ -55,8 +54,28 @@ public interface Device {
      * you should call handler.handle method with json Array. message will reply with same tcp connection
      *
      * @param message device message
-     * @param commandDAO commands collection data access object
-     * @param handler handler
+     * @param <T> type
+     * @param unreadMessages messages of going wait to send
+     * @return reply for message
      */
-    void replyMessage(Message message, CommandDAO commandDAO, Handler<JsonArray> handler);
+    <T> Reply<T> replyMessage(Message message, List<? extends CommandMessage> unreadMessages) throws UnsupportedReplyTypeException;
+
+    /**
+     *
+     * @return locationMessage class
+     */
+    Class<? extends LocationMessage> getLocationType();
+
+    /**
+     *
+     * @param messages message
+     * @return geojson message
+     */
+    GeoJsonResponse responseAsGeoJson(List<? extends LocationMessage> messages);
+
+    /**
+     *
+     * @return responseAdapter
+     */
+    ResponseAdapter getResponseAdapter();
 }
