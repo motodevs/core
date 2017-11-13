@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by oksuz on 20/08/2017.
@@ -14,9 +15,9 @@ public class DeviceState implements Serializable {
 
     private String deviceId;
     private double distance;
-    private double createdAt;
-    private double updatedAt;
-    private double deviceDate;
+    private long createdAt;
+    private long updatedAt;
+    private long deviceDate;
     private double latitude;
     private double longitude;
     private double direction;
@@ -60,27 +61,27 @@ public class DeviceState implements Serializable {
         this.gpsStatus = gpsStatus;
     }
 
-    public double getCreatedAt() {
+    public long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(double createdAt) {
+    public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public double getUpdatedAt() {
+    public long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(double updatedAt) {
+    public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public double getDeviceDate() {
+    public long getDeviceDate() {
         return deviceDate;
     }
 
-    public void setDeviceDate(double deviceDate) {
+    public void setDeviceDate(long deviceDate) {
         this.deviceDate = deviceDate;
     }
 
@@ -143,11 +144,9 @@ public class DeviceState implements Serializable {
     @Override
     public String toString() {
         return "DeviceState{" +
-                "createdAt=" + createdAt +
-                ", deviceId='" + deviceId + '\'' +
-                ", deviceDate=" + deviceDate +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
+                "deviceId='" + deviceId + '\'' +
+                ", createdAt=" + new Date(createdAt) +
+                ", deviceDate=" + new Date(deviceDate) +
                 ", gpsStatus=" + gpsStatus +
                 ", deviceStatus=" + deviceStatus +
                 '}';
