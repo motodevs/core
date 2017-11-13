@@ -139,4 +139,17 @@ public class DeviceState implements Serializable {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
+
+    @Override
+    public String toString() {
+        return "DeviceState{" +
+                "createdAt=" + createdAt +
+                ", deviceId='" + deviceId + '\'' +
+                ", deviceDate=" + deviceDate +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", gpsStatus=" + gpsStatus +
+                ", deviceStatus=" + deviceStatus +
+                '}';
+    }
 }
