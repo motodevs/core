@@ -145,10 +145,13 @@ public class DeviceState implements Serializable {
     public String toString() {
         return "DeviceState{" +
                 "deviceId='" + deviceId + '\'' +
+                ", distance=" + distance +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", deviceStatus=" + deviceStatus +
+                ", gpsStatus=" + gpsStatus +
                 ", createdAt=" + new Date(createdAt) +
                 ", deviceDate=" + new Date(deviceDate) +
-                ", gpsStatus=" + gpsStatus +
-                ", deviceStatus=" + deviceStatus +
                 '}';
     }
 }
