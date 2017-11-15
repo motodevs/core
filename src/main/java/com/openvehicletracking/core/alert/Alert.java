@@ -21,7 +21,7 @@ public class Alert implements JsonSerializeable, JsonDeserializeable<Alert> {
     private List<AlertAction> actionList;
     private long datetime;
     private JsonObject extraData;
-    private static final Gson gson = GsonFactory.newGson();
+    private final transient Gson gson = GsonFactory.newGson();
 
     public Alert(String deviceId, String description, List<AlertAction> actionList, long datetime) {
         Objects.requireNonNull(deviceId);

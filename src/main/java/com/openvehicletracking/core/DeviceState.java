@@ -21,7 +21,7 @@ public class DeviceState implements JsonSerializeable, JsonDeserializeable<Devic
     private boolean invalidDeviceDate;
     private DeviceStatus deviceStatus;
     private GpsStatus gpsStatus;
-    private static Gson gson = GsonFactory.newGson();
+    private final transient Gson gson = GsonFactory.newGson();
 
     @Override
     public DeviceState fromJsonString(String json) {
