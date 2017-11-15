@@ -1,17 +1,12 @@
 package com.openvehicletracking.core;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by oksuz on 20/08/2017.
  *
  */
-public class DeviceState implements Serializable {
+public class DeviceState implements JsonSerializeable, JsonDeserializeable<DeviceState> {
 
     private String deviceId;
     private double distance;
@@ -26,15 +21,16 @@ public class DeviceState implements Serializable {
     private boolean invalidDeviceDate;
     private DeviceStatus deviceStatus;
     private GpsStatus gpsStatus;
-    private static Gson gson = new Gson();
+    private static Gson gson = GsonFactory.newGson();
 
-    public static DeviceState fromJson(JsonObject object) {
-        return gson.fromJson(object, DeviceState.class);
+    @Override
+    public DeviceState fromJsonString(String json) {
+        return gson.fromJson(json, this.getClass());
     }
 
-    public JsonObject toJson() {
-        JsonParser parser = new JsonParser();
-        return parser.parse(gson.toJson(this)).getAsJsonObject();
+    @Override
+    public String asJsonString() {
+        return gson.toJson(this);
     }
 
     public String getDeviceId() {
@@ -143,15 +139,6 @@ public class DeviceState implements Serializable {
 
     @Override
     public String toString() {
-        return "DeviceState{" +
-                "deviceId='" + deviceId + '\'' +
-                ", distance=" + distance +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", deviceStatus=" + deviceStatus +
-                ", gpsStatus=" + gpsStatus +
-                ", createdAt=" + new Date(createdAt) +
-                ", deviceDate=" + new Date(deviceDate) +
-                '}';
+        return asJsonString();
     }
 }

@@ -25,7 +25,7 @@ public class GeoJsonResponseTest {
         response.addFeature(feature);
 
 
-        Assert.assertEquals(expectedJson, response.toJson().toString());
+        Assert.assertEquals(expectedJson, response.asJsonString());
 
     }
 

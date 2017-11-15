@@ -2,6 +2,7 @@ package com.openvehicletracking.core.geojson;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.openvehicletracking.core.JsonSerializeable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by yo on 30/08/2017.
  */
-public class GeoJsonResponse {
+public class GeoJsonResponse implements JsonSerializeable {
 
     private final String type = "FeatureCollection";
     private final List<Feature> features = new ArrayList<>();
@@ -18,7 +19,8 @@ public class GeoJsonResponse {
         features.add(feature);
     }
 
-    public JsonObject toJson() {
+    @Override
+    public String asJsonString() {
         JsonObject result = new JsonObject();
         JsonArray featuresNode = new JsonArray();
 
@@ -53,7 +55,7 @@ public class GeoJsonResponse {
         result.addProperty("type", type);
         result.add("features", featuresNode);
 
-        return result;
+        return result.toString();
     }
 
 }
