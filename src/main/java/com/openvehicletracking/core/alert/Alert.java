@@ -1,4 +1,4 @@
-package com.openvehicletracking.core.alarm;
+package com.openvehicletracking.core.alert;
 
 
 import com.google.gson.Gson;
@@ -18,12 +18,12 @@ public class Alert implements JsonSerializeable, JsonDeserializeable<Alert> {
 
     private String deviceId;
     private String description;
-    private List<AlarmAction> actionList;
+    private List<AlertAction> actionList;
     private long datetime;
     private JsonObject extraData;
     private static final Gson gson = GsonFactory.newGson();
 
-    public Alert(String deviceId, String description, List<AlarmAction> actionList, long datetime) {
+    public Alert(String deviceId, String description, List<AlertAction> actionList, long datetime) {
         Objects.requireNonNull(deviceId);
         Objects.requireNonNull(description);
         Objects.requireNonNull(actionList);
@@ -35,7 +35,7 @@ public class Alert implements JsonSerializeable, JsonDeserializeable<Alert> {
         this.datetime = datetime;
     }
 
-    public Alert(String deviceId, String description, List<AlarmAction> actionList, long datetime, JsonObject extraData) {
+    public Alert(String deviceId, String description, List<AlertAction> actionList, long datetime, JsonObject extraData) {
         this(deviceId, description, actionList, datetime);
         this.extraData = extraData;
     }
@@ -58,7 +58,7 @@ public class Alert implements JsonSerializeable, JsonDeserializeable<Alert> {
         return description;
     }
 
-    public List<AlarmAction> getActions() {
+    public List<AlertAction> getActions() {
         return actionList;
     }
 

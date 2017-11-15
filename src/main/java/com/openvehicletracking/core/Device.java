@@ -1,6 +1,6 @@
 package com.openvehicletracking.core;
 
-import com.openvehicletracking.core.alarm.Alert;
+import com.openvehicletracking.core.alert.Alert;
 import com.openvehicletracking.core.exception.UnsupportedMessageTypeException;
 import com.openvehicletracking.core.geojson.GeoJsonResponse;
 import com.openvehicletracking.core.message.*;
@@ -36,9 +36,9 @@ public interface Device {
     /**
      *
      * @param message parsed device message
-     * @return alarm
+     * @return alert
      */
-    Alert generateAlarmFromMessage(Message message);
+    Alert generateAlertFromMessage(Message message);
 
     /**
      * update device meta or state using message
