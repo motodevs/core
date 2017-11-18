@@ -46,7 +46,7 @@ public interface LocationMessage extends Message {
      * @return message
      */
     static <T extends LocationMessage> T fromJson(String jsonString, Class<T> type) {
-        return GsonFactory.newGson().fromJson(jsonString, type);
+        return GsonFactory.getGson().fromJson(jsonString, type);
     }
 
     /**
@@ -56,6 +56,6 @@ public interface LocationMessage extends Message {
      * @return message
      */
     static <T extends LocationMessage> T fromJson(JsonObject json, Class<T> type) {
-        return GsonFactory.newGson().fromJson(json, type);
+        return GsonFactory.getGson().fromJson(json, type);
     }
 }

@@ -1,12 +1,12 @@
 package com.openvehicletracking.core;
 
-import com.google.gson.Gson;
+import java.io.Serializable;
 
 /**
  * Created by oksuz on 20/08/2017.
  *
  */
-public class DeviceState implements JsonSerializeable, JsonDeserializeable<DeviceState> {
+public class DeviceState implements JsonSerializeable, JsonDeserializeable<DeviceState>, Serializable {
 
     private String deviceId;
     private double distance;
@@ -21,16 +21,15 @@ public class DeviceState implements JsonSerializeable, JsonDeserializeable<Devic
     private boolean invalidDeviceDate;
     private DeviceStatus deviceStatus;
     private GpsStatus gpsStatus;
-    private final transient Gson gson = GsonFactory.newGson();
 
     @Override
     public DeviceState fromJsonString(String json) {
-        return gson.fromJson(json, this.getClass());
+        return GsonFactory.getGson().fromJson(json, this.getClass());
     }
 
     @Override
     public String asJsonString() {
-        return gson.toJson(this);
+        return GsonFactory.getGson().toJson(this);
     }
 
     public String getDeviceId() {
@@ -139,6 +138,13 @@ public class DeviceState implements JsonSerializeable, JsonDeserializeable<Devic
 
     @Override
     public String toString() {
-        return asJsonString();
+        return "DeviceState{" +
+                "deviceId='" + deviceId + '\'' +
+                ", deviceDate=" + deviceDate +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", deviceStatus=" + deviceStatus +
+                ", gpsStatus=" + gpsStatus +
+                '}';
     }
 }

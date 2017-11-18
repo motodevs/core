@@ -9,8 +9,10 @@ import com.google.gson.GsonBuilder;
  */
 public class GsonFactory {
 
-    public static Gson newGson() {
-        return new GsonBuilder().serializeNulls().create();
+    private static final Gson gsonInstance = new GsonBuilder().serializeNulls().create();
+
+    public static Gson getGson() {
+        return gsonInstance;
     }
 
 }

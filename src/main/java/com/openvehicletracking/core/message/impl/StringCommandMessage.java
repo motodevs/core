@@ -10,11 +10,11 @@ public class StringCommandMessage extends AbstractCommandMessage {
 
     @Override
     public CommandMessage fromJsonString(String json) {
-        return GsonFactory.newGson().fromJson(json, this.getClass());
+        return GsonFactory.getGson().fromJson(json, this.getClass());
     }
 
     @Override
     public String asJsonString() {
-        return GsonFactory.newGson().toJson(this);
+        return GsonFactory.getGson().toJson(this);
     }
 }
