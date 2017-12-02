@@ -6,7 +6,6 @@ package com.openvehicletracking.core;
  */
 public interface JsonSerializeable {
 
-
     String asJsonString();
 
 }

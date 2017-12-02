@@ -1,6 +1,7 @@
 package com.openvehicletracking.core.message.impl;
 
 import com.google.gson.JsonArray;
+import com.openvehicletracking.core.alert.Alert;
 import com.openvehicletracking.core.message.CommandMessage;
 
 import java.util.Optional;

@@ -1,7 +1,6 @@
 package com.openvehicletracking.core.message;
 
 import com.google.gson.JsonArray;
-import com.openvehicletracking.core.JsonDeserializeable;
 import com.openvehicletracking.core.JsonSerializeable;
 
 import java.util.Optional;
@@ -11,7 +10,7 @@ import java.util.Optional;
  *
  * A generic Tracking Device Message
  */
-public interface Message extends JsonSerializeable, JsonDeserializeable {
+public interface Message extends JsonSerializeable {
 
     /**
      * in generally server and tracking devices are talking with requestId,

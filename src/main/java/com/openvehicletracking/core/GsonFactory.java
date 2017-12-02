@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
  */
 public class GsonFactory {
 
-    private static final Gson gsonInstance = new GsonBuilder().serializeNulls().create();
+    private static final Gson gsonInstance = new GsonBuilder().create();
 
     public static Gson getGson() {
         return gsonInstance;

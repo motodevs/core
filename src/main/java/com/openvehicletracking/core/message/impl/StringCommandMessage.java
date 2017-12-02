@@ -9,11 +9,6 @@ import com.openvehicletracking.core.message.CommandMessage;
 public class StringCommandMessage extends AbstractCommandMessage {
 
     @Override
-    public CommandMessage fromJsonString(String json) {
-        return GsonFactory.getGson().fromJson(json, this.getClass());
-    }
-
-    @Override
     public String asJsonString() {
         return GsonFactory.getGson().toJson(this);
     }

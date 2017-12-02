@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by oksuz on 20/08/2017.
  *
  */
-public class DeviceState implements JsonSerializeable, JsonDeserializeable<DeviceState>, Serializable {
+public class DeviceState implements JsonSerializeable, Serializable {
 
     private String deviceId;
     private double distance;
@@ -21,11 +21,6 @@ public class DeviceState implements JsonSerializeable, JsonDeserializeable<Devic
     private boolean invalidDeviceDate;
     private DeviceStatus deviceStatus;
     private GpsStatus gpsStatus;
-
-    @Override
-    public DeviceState fromJsonString(String json) {
-        return GsonFactory.getGson().fromJson(json, this.getClass());
-    }
 
     @Override
     public String asJsonString() {
@@ -138,13 +133,6 @@ public class DeviceState implements JsonSerializeable, JsonDeserializeable<Devic
 
     @Override
     public String toString() {
-        return "DeviceState{" +
-                "deviceId='" + deviceId + '\'' +
-                ", deviceDate=" + deviceDate +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", deviceStatus=" + deviceStatus +
-                ", gpsStatus=" + gpsStatus +
-                '}';
+        return GsonFactory.getGson().toJson(this);
     }
 }
