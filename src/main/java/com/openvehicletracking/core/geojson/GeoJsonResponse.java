@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class GeoJsonResponse implements JsonSerializeable {
 
-    private final String type = "FeatureCollection";
+    private static final String TYPE = "FeatureCollection";
     private final List<Feature> features = new ArrayList<>();
 
     public void addFeature(final Feature feature) {
@@ -29,20 +29,12 @@ public class GeoJsonResponse implements JsonSerializeable {
             JsonObject featureGeometry = new JsonObject();
             JsonObject featureProperties = new JsonObject();
             JsonObject geometryProperties = new JsonObject();
-            JsonArray geometryPoints = new JsonArray();
-
-
-            feature.getGeometry().getCoordinates().forEach(point -> {
-                JsonArray p = new JsonArray();
-                p.add(point.getLongitude());
-                p.add(point.getLatitude());
-                geometryPoints.add(p);
-            });
+            JsonArray geometryPoints = feature.getGeometry().getCoordinates();
 
             feature.getGeometry().getProperties().forEach(property -> geometryProperties.addProperty(property.getName(), property.getValue()));
+            feature.getProperties().forEach(property -> featureProperties.addProperty(property.getName(), property.getValue()));
 
-
-            featureGeometry.addProperty("type", feature.getGeometry().getType());
+            featureGeometry.addProperty("type", feature.getGeometry().getType().asString());
             featureGeometry.add("coordinates", geometryPoints);
             featureGeometry.add("properties", geometryProperties);
 
@@ -52,7 +44,7 @@ public class GeoJsonResponse implements JsonSerializeable {
             featuresNode.add(f);
         }
 
-        result.addProperty("type", type);
+        result.addProperty("type", TYPE);
         result.add("features", featuresNode);
 
         return result.toString();

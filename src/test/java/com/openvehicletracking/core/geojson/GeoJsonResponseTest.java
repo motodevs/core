@@ -17,7 +17,7 @@ public class GeoJsonResponseTest {
         String expectedJson = "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"LineString\",\"coordinates\":[[987.0,678.0],[456.0,123.0]],\"properties\":{}},\"properties\":{}}]}";
         GeoJsonResponse response = new GeoJsonResponse();
 
-        Geometry geometry = new Geometry("LineString");
+        LineStringGeometry geometry = new LineStringGeometry();
         geometry.addPoint(new Point(123,456));
         geometry.addPoint(new Point(678,987));
 

@@ -3,12 +3,12 @@ package com.openvehicletracking.core.geojson;
 /**
  * Created by yo on 30/08/2017.
  */
-public class Property {
+public class GeoJsonProperty {
 
     private final String name;
     private final String value;
 
-    public Property(String value, String name) {
+    public GeoJsonProperty(String value, String name) {
         this.value = value;
         this.name = name;
     }
