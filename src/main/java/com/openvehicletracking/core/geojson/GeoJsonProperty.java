@@ -8,7 +8,7 @@ public class GeoJsonProperty {
     private final String name;
     private final String value;
 
-    public GeoJsonProperty(String value, String name) {
+    public GeoJsonProperty(String name, String value) {
         this.value = value;
         this.name = name;
     }

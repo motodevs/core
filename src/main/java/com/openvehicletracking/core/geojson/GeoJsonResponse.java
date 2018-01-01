@@ -39,6 +39,7 @@ public class GeoJsonResponse implements JsonSerializeable {
             featureGeometry.add("properties", geometryProperties);
 
             f.addProperty("type", feature.getType());
+            f.addProperty("id", feature.getId());
             f.add("geometry", featureGeometry);
             f.add("properties", featureProperties);
             featuresNode.add(f);

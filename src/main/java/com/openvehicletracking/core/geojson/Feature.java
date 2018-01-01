@@ -11,16 +11,18 @@ import java.util.Objects;
 public class Feature {
 
     private final List<GeoJsonProperty> properties;
+    private final int id;
     private final Geometry geometry;
     private static final String FEATURE = "Feature";
 
-    public Feature(List<GeoJsonProperty> properties, Geometry geometry) {
+    public Feature(int id, List<GeoJsonProperty> properties, Geometry geometry) {
         if (properties == null) {
             properties = new ArrayList<>();
         }
         Objects.requireNonNull(geometry, "geometry cannot be null");
         this.properties = properties;
         this.geometry = geometry;
+        this.id = id;
     }
 
     public String getType() {
@@ -33,5 +35,9 @@ public class Feature {
 
     public Geometry getGeometry() {
         return geometry;
+    }
+
+    public int getId() {
+        return id;
     }
 }
