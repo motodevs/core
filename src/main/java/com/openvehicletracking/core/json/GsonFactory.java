@@ -1,4 +1,4 @@
-package com.openvehicletracking.core;
+package com.openvehicletracking.core.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

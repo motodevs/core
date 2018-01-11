@@ -1,6 +1,5 @@
-package com.openvehicletracking.core.message;
+package com.openvehicletracking.core.protocol;
 
-import java.util.regex.Pattern;
 
 /**
  * Created by oksuz on 19/05/2017.
@@ -14,12 +13,12 @@ public interface MessageHandler {
      * when pattern matched with message then the handle method going to call
      * @return incoming message pattern
      */
-    Pattern pattern();
+    boolean isMatch(Object msg);
 
     /**
      * @param msg message
      * @return device message
      */
-    Message handle(String msg);
+    Message handle(Object msg);
 
 }
