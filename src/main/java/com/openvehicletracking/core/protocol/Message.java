@@ -1,7 +1,7 @@
 package com.openvehicletracking.core.protocol;
 
 import com.openvehicletracking.core.Device;
-import com.openvehicletracking.core.ConnectionHolder;
+import com.openvehicletracking.core.Reply;
 import com.openvehicletracking.core.json.JsonSerializeable;
 
 import java.util.Date;
@@ -14,11 +14,15 @@ import java.util.Optional;
  */
 public interface Message extends JsonSerializeable {
 
+    String ATTR_ALERT = "alert";
+
+    Object getRaw();
+
     Device getDevice();
 
     Date getDate();
 
     Optional<HashMap<String, Object>> getAttributes();
 
-    <T> void reply(ConnectionHolder<T> connectionHolder);
+    void reply(Reply reply);
 }

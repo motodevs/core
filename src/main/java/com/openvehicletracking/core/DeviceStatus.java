@@ -6,6 +6,6 @@ package com.openvehicletracking.core;
  */
 public enum DeviceStatus {
 
-    MOVING, PARKED, UNKNOWN
+    ONLINE, OFFLINE, UNKNOWN
 
 }

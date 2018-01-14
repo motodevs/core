@@ -4,4 +4,6 @@ public interface ConnectionHolder<T> {
 
     void write(Reply reply);
 
+    T getConnection();
+
 }

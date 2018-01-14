@@ -8,23 +8,13 @@ package com.openvehicletracking.core;
  */
 public interface Device {
 
-    /**
-     *
-     * @return name
-     */
     String getName();
 
-    /**
-     *
-     * @return id
-     */
     String getId();
 
-
-    /**
-     *
-     * @return state of device
-     */
     DeviceState getState();
 
+    void addConnection(ConnectionHolder<?> connectionHolder);
+
+    ConnectionHolder<?> getConnection();
 }

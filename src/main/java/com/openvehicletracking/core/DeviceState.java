@@ -24,6 +24,7 @@ public class DeviceState implements JsonSerializeable {
     private long deviceDate;
 
     private DeviceStatus deviceStatus;
+    private VehicleStatus vehicleStatus;
     private GpsStatus gpsStatus;
     private Map<String, Object> attributes = new HashMap<>();
     private DeviceState oldState;
@@ -127,6 +128,22 @@ public class DeviceState implements JsonSerializeable {
 
     public void addAttribute(String key, Object value) {
         this.attributes.put(key, value);
+    }
+
+    public VehicleStatus getVehicleStatus() {
+        return vehicleStatus;
+    }
+
+    public void setVehicleStatus(VehicleStatus vehicleStatus) {
+        this.vehicleStatus = vehicleStatus;
+    }
+
+    public DeviceState getOldState() {
+        return oldState;
+    }
+
+    public void setOldState(DeviceState oldState) {
+        this.oldState = oldState;
     }
 
     @Override
