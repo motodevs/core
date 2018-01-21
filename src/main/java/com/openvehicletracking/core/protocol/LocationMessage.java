@@ -2,6 +2,7 @@ package com.openvehicletracking.core.protocol;
 
 import com.google.gson.JsonObject;
 import com.openvehicletracking.core.GpsStatus;
+import com.openvehicletracking.core.Position;
 import com.openvehicletracking.core.json.GsonFactory;
 
 /**
@@ -10,15 +11,7 @@ import com.openvehicletracking.core.json.GsonFactory;
  */
 public interface LocationMessage extends Message {
 
-    double getLatitude();
-
-    double getLongitude();
-
-    double getSpeed();
-
-    double getDirection();
-
-    double getAccuracy();
+    Position getPosition();
 
     GpsStatus getStatus();
 

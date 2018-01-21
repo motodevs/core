@@ -13,12 +13,8 @@ import java.util.Map;
  */
 public class DeviceState implements JsonSerializeable {
 
-    private double distance;
-    private double latitude;
-    private double longitude;
-    private double direction;
-    private double speed;
 
+    private Position position;
     private long createdAt;
     private long updatedAt;
     private long deviceDate;
@@ -42,44 +38,12 @@ public class DeviceState implements JsonSerializeable {
         return GsonFactory.getGson().toJson(this);
     }
 
-    public double getDistance() {
-        return distance;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getDirection() {
-        return direction;
-    }
-
-    public void setDirection(double direction) {
-        this.direction = direction;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public long getCreatedAt() {

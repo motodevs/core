@@ -1,6 +1,8 @@
 package com.openvehicletracking.core;
 
 
+import com.openvehicletracking.core.protocol.Message;
+
 /**
  * @author oksuz
  *
@@ -13,6 +15,8 @@ public interface Device {
     String getId();
 
     DeviceState getState();
+
+    void createStateFromMessage(Message message);
 
     void addConnection(ConnectionHolder<?> connectionHolder);
 
