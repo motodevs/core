@@ -34,4 +34,8 @@ public interface Message extends JsonSerializeable {
     Optional<HashMap<String, Object>> getAttributes();
 
     void reply(Reply reply);
+
+    String getProtocolName();
+
+    int getType();
 }

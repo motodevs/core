@@ -30,4 +30,9 @@ public class ProtocolChainImpl implements ProtocolChain {
         }
         return null;
     }
+
+    @Override
+    public MessagingProtocol find(String name) {
+        return protocols.getOrDefault(name, null);
+    }
 }

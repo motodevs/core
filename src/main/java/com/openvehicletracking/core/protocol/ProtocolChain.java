@@ -7,4 +7,6 @@ public interface ProtocolChain {
     void add(MessagingProtocol protocol);
 
     Message handle(Object message, ConnectionHolder<?> connectionHolder);
+
+    MessagingProtocol find(String name);
 }

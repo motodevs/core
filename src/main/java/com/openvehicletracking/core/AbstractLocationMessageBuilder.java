@@ -5,7 +5,7 @@ import com.openvehicletracking.core.protocol.LocationMessage;
 import java.util.Date;
 import java.util.HashMap;
 
-public abstract class AbstractLocationMessageBuilder<T extends LocationMessage> {
+public abstract class AbstractLocationMessageBuilder<T extends LocationMessage> implements MessageBuilder<T> {
 
     private Position position;
     private GpsStatus gpsStatus;
