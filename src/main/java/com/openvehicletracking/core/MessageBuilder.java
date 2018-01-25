@@ -1,7 +1,6 @@
 package com.openvehicletracking.core;
 
 import com.openvehicletracking.core.protocol.Message;
-import com.openvehicletracking.core.protocol.MessagingProtocol;
 
 import java.util.Date;
 
@@ -15,5 +14,5 @@ public interface MessageBuilder<T extends Message> {
 
     MessageBuilder date(Date date);
 
-    MessageBuilder protocol(MessagingProtocol protocol);
+    MessageBuilder protocol(String protocol);
 }

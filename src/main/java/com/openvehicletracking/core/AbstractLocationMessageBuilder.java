@@ -12,7 +12,8 @@ public abstract class AbstractLocationMessageBuilder<T extends LocationMessage> 
     private double accuracy;
     private Date date;
     private HashMap<String, Object> attributes = new HashMap<>();
-    private String raw;
+    private Object raw;
+    private String protocol;
 
     public AbstractLocationMessageBuilder gpsStatus(GpsStatus gpsStatus) {
         this.gpsStatus = gpsStatus;
@@ -39,8 +40,15 @@ public abstract class AbstractLocationMessageBuilder<T extends LocationMessage> 
         return this;
     }
 
-    public AbstractLocationMessageBuilder raw(String raw) {
+    @Override
+    public AbstractLocationMessageBuilder raw(Object raw) {
         this.raw = raw;
+        return this;
+    }
+
+    @Override
+    public AbstractLocationMessageBuilder protocol(String protocol) {
+        this.protocol = protocol;
         return this;
     }
 
@@ -64,9 +72,11 @@ public abstract class AbstractLocationMessageBuilder<T extends LocationMessage> 
         return attributes;
     }
 
-    public String getRaw() {
+    public Object getRaw() {
         return raw;
     }
 
-    public abstract T build(Object... args);
+    public String getProtocol() {
+        return protocol;
+    }
 }

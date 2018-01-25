@@ -1,7 +1,6 @@
 package com.openvehicletracking.core;
 
 import com.openvehicletracking.core.protocol.Command;
-import com.openvehicletracking.core.protocol.MessagingProtocol;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -9,7 +8,7 @@ import java.util.Optional;
 
 public abstract class AbstractCommandMessageBuilder<T extends Command> implements MessageBuilder<T> {
 
-    private MessagingProtocol protocol;
+    private String protocol;
     private HashMap<String, Object> attributes = new HashMap<>();
     private Date date;
     private Object raw;
@@ -39,12 +38,12 @@ public abstract class AbstractCommandMessageBuilder<T extends Command> implement
     }
 
     @Override
-    public MessageBuilder protocol(MessagingProtocol protocol) {
+    public MessageBuilder protocol(String  protocol) {
         this.protocol = protocol;
         return this;
     }
 
-    public MessagingProtocol getProtocol() {
+    public String getProtocol() {
         return protocol;
     }
 
