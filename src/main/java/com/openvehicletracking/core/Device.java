@@ -16,7 +16,7 @@ public interface Device {
 
     DeviceState getState();
 
-    void createStateFromMessage(Message message);
+    Device createStateFromMessage(Message message);
 
     void addConnection(ConnectionHolder<?> connectionHolder);
 

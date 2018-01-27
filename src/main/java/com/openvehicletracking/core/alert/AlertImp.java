@@ -14,14 +14,14 @@ public class AlertImp implements Alert {
     private final int id;
     private final List<AlertAction> actions;
     private final HashMap<String, Object> extras;
-    private final Date date;
+    private final long date;
 
     private AlertImp(AlertBuilder alertBuilder) {
         description = alertBuilder.description;
         id = alertBuilder.id;
         actions = alertBuilder.actions;
         extras = alertBuilder.extra;
-        date = alertBuilder.date;
+        date = alertBuilder.date.getTime();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class AlertImp implements Alert {
 
     @Override
     public Date getAlertDate() {
-        return date;
+        return new Date(date);
     }
 
     @Override
