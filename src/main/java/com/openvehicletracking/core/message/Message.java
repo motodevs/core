@@ -1,7 +1,7 @@
 package com.openvehicletracking.core.message;
 
-
-import io.vertx.core.json.JsonArray;
+import com.google.gson.JsonArray;
+import com.openvehicletracking.core.JsonSerializeable;
 
 import java.util.Optional;
 
@@ -10,7 +10,7 @@ import java.util.Optional;
  *
  * A generic Tracking Device Message
  */
-public interface Message {
+public interface Message extends JsonSerializeable {
 
     /**
      * in generally server and tracking devices are talking with requestId,
@@ -52,4 +52,12 @@ public interface Message {
      * @return extra parameters
      */
     Optional<JsonArray> getExtraParameters();
+
+
+    /**
+     *
+     * @return when return true then call Device#replyMessage
+     */
+    boolean isReplyRequired();
+
 }
