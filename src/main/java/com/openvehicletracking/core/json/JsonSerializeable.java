@@ -1,4 +1,4 @@
-package com.openvehicletracking.core;
+package com.openvehicletracking.core.json;
 
 /**
  * Created by oksuz on 15/11/2017.
@@ -6,6 +6,6 @@ package com.openvehicletracking.core;
  */
 public interface JsonSerializeable {
 
-    String asJsonString();
+    String asJson();
 
 }

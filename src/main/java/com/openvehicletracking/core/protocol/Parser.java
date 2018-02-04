@@ -1,4 +1,4 @@
-package com.openvehicletracking.core.message;
+package com.openvehicletracking.core.protocol;
 
 /**
  * Created by oksuz on 19/05/2017.

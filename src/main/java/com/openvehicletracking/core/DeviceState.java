@@ -1,54 +1,49 @@
 package com.openvehicletracking.core;
 
-import java.io.Serializable;
+import com.openvehicletracking.core.json.GsonFactory;
+import com.openvehicletracking.core.json.JsonSerializeable;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by oksuz on 20/08/2017.
  *
  */
-public class DeviceState implements JsonSerializeable, Serializable {
+public class DeviceState implements JsonSerializeable {
 
-    private String deviceId;
-    private double distance;
+
+    private Position position;
     private long createdAt;
     private long updatedAt;
     private long deviceDate;
-    private double latitude;
-    private double longitude;
-    private double direction;
-    private double speed;
-    private boolean ignitionKeyOff;
-    private boolean invalidDeviceDate;
+
     private DeviceStatus deviceStatus;
+    private VehicleStatus vehicleStatus;
     private GpsStatus gpsStatus;
+    private Map<String, Object> attributes = new HashMap<>();
+    private DeviceState oldState;
+
+    public DeviceState() {
+        this(null);
+    }
+
+    public DeviceState(@Nullable DeviceState oldState) {
+        this.oldState = oldState;
+    }
 
     @Override
-    public String asJsonString() {
+    public String asJson() {
         return GsonFactory.getGson().toJson(this);
     }
 
-    public String getDeviceId() {
-        return deviceId;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-    public GpsStatus getGpsStatus() {
-        return gpsStatus;
-    }
-
-    public void setGpsStatus(GpsStatus gpsStatus) {
-        this.gpsStatus = gpsStatus;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public long getCreatedAt() {
@@ -75,22 +70,6 @@ public class DeviceState implements JsonSerializeable, Serializable {
         this.deviceDate = deviceDate;
     }
 
-    public boolean isIgnitionKeyOff() {
-        return ignitionKeyOff;
-    }
-
-    public void setIgnitionKeyOff(boolean ignitionKeyOff) {
-        this.ignitionKeyOff = ignitionKeyOff;
-    }
-
-    public boolean isInvalidDeviceDate() {
-        return invalidDeviceDate;
-    }
-
-    public void setInvalidDeviceDate(boolean invalidDeviceDate) {
-        this.invalidDeviceDate = invalidDeviceDate;
-    }
-
     public DeviceStatus getDeviceStatus() {
         return deviceStatus;
     }
@@ -99,36 +78,36 @@ public class DeviceState implements JsonSerializeable, Serializable {
         this.deviceStatus = deviceStatus;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public GpsStatus getGpsStatus() {
+        return gpsStatus;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setGpsStatus(GpsStatus gpsStatus) {
+        this.gpsStatus = gpsStatus;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public Map<String, Object> getAttributes() {
+        return attributes;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void addAttribute(String key, Object value) {
+        this.attributes.put(key, value);
     }
 
-    public double getDirection() {
-        return direction;
+    public VehicleStatus getVehicleStatus() {
+        return vehicleStatus;
     }
 
-    public void setDirection(double direction) {
-        this.direction = direction;
+    public void setVehicleStatus(VehicleStatus vehicleStatus) {
+        this.vehicleStatus = vehicleStatus;
     }
 
-    public double getSpeed() {
-        return speed;
+    public DeviceState getOldState() {
+        return oldState;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public void setOldState(DeviceState oldState) {
+        this.oldState = oldState;
     }
 
     @Override

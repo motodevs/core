@@ -2,7 +2,7 @@ package com.openvehicletracking.core.geojson;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.openvehicletracking.core.JsonSerializeable;
+import com.openvehicletracking.core.json.JsonSerializeable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class GeoJsonResponse implements JsonSerializeable {
     }
 
     @Override
-    public String asJsonString() {
+    public String asJson() {
         JsonObject result = new JsonObject();
         JsonArray featuresNode = new JsonArray();
 
