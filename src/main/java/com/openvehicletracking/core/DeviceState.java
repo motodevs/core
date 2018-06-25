@@ -112,6 +112,15 @@ public class DeviceState implements JsonSerializeable {
 
     @Override
     public String toString() {
-        return GsonFactory.getGson().toJson(this);
+        return "DeviceState{" +
+                "position=" + position +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deviceDate=" + deviceDate +
+                ", deviceStatus=" + deviceStatus +
+                ", vehicleStatus=" + vehicleStatus +
+                ", gpsStatus=" + gpsStatus +
+                ", attributes=" + attributes +
+                '}';
     }
 }

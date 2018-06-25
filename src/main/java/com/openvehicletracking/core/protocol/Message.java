@@ -1,7 +1,9 @@
 package com.openvehicletracking.core.protocol;
 
 import com.openvehicletracking.core.Device;
+import com.openvehicletracking.core.DeviceState;
 import com.openvehicletracking.core.Reply;
+import com.openvehicletracking.core.exception.StateCreateNotSupportException;
 import com.openvehicletracking.core.json.JsonSerializeable;
 
 import java.util.Date;
@@ -38,4 +40,6 @@ public interface Message extends JsonSerializeable {
     String getProtocolName();
 
     int getType();
+
+    DeviceState createState() throws StateCreateNotSupportException;
 }
