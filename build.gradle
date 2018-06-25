@@ -1,5 +1,5 @@
 group 'com.openvehicletracking'
-version '2.0.0-SNAPSHOT'
+version '2.1.0-SNAPSHOT'
 
 def log4jVersion = '2.8.2'
 
