@@ -6,6 +6,7 @@ import com.openvehicletracking.core.Reply;
 import com.openvehicletracking.core.exception.StateCreateNotSupportException;
 import com.openvehicletracking.core.json.JsonSerializeable;
 
+import javax.annotation.Nullable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Optional;
@@ -29,6 +30,7 @@ public interface Message extends JsonSerializeable {
 
     Object getRaw();
 
+    @Nullable
     Device getDevice();
 
     Date getDate();
